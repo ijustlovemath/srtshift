@@ -47,9 +47,7 @@ def main():
             pass
         #start = start + 
 
-    if emit_buffer and emit:
-        for message in emit_buffer:
-            print(message)
+    flush(emit_buffer, emit)
 
 def flush(emit_buffer, emit):
     if emit_buffer and emit:
