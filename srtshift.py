@@ -40,7 +40,7 @@ def main():
             start, end = line.split(' --> ')
             start = Timestamp(start) + offset
             end = Timestamp(end) + offset
-            emit_buffer.append(f"{start} --> {end}")
+            emit_buffer.append(f"{start} --> {end}\n")
             emit = True
         except AssertionError:
             # these timestamps are going negative, dont print them
@@ -52,7 +52,7 @@ def main():
 def flush(emit_buffer, emit):
     if emit_buffer and emit:
         for message in emit_buffer:
-            print(message)
+            print(message, end="")
     if emit_buffer and not emit:
         print(f"[WARNING] Quashing messages '{emit_buffer}' due to incompatible/negative timestamp", file=sys.stderr)
     
@@ -160,5 +160,4 @@ def test():
     print(t3)
     print(t3)
 
-test()
 main()
